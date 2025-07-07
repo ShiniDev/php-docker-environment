@@ -6,6 +6,14 @@ http://localhost {
 	reverse_proxy nginx:80
 }
 
-http://pma.localhost {
+pma.localhost {
 	reverse_proxy phpmyadmin:80
+}
+
+:80 {
+	reverse_proxy nginx:80
+}
+
+:443 {
+	reverse_proxy nginx:80
 }
