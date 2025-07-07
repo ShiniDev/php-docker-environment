@@ -42,8 +42,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
   db:
     image: mysql
     restart: always
@@ -63,14 +62,14 @@ services:
     working_dir: /app
     volumes:
       - ./src:/app
-  # redis-stack:
-  #   image: redis/redis-stack:latest
-  #   ports:
-  #     - "8001:8001"
-  #   environment:
-  #     REDIS_ARGS: ${REDIS_ARGS}
-  #   volumes:
-  #     - redis_stack_data:/data
+  redis-stack:
+    image: redis/redis-stack:latest
+    ports:
+      - "8001:8001"
+    environment:
+      REDIS_ARGS: ${REDIS_ARGS}
+    volumes:
+      - redis_stack_data:/data
   mailpit:
     image: axllent/mailpit
     restart: unless-stopped
